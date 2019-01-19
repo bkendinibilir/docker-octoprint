@@ -3,7 +3,7 @@ EXPOSE 5000
 LABEL maintainer "Benjamin Kendinibilir <bkendinibilir@mac.com>"
 
 ENV CURA_VERSION=15.04.6
-ARG tag=master
+ARG octoprint_tag=1.3.10
 ARG build_packages="git g++ make linux-headers libexecinfo-dev"
 
 WORKDIR /opt/octoprint
@@ -23,7 +23,7 @@ RUN cd /tmp \
 	&& mv -f ./build /opt/cura/ \
   && rm -Rf /tmp/*
 
-RUN git clone --branch $tag https://github.com/foosel/OctoPrint.git /opt/octoprint \
+RUN git clone --branch $octoprint_tag https://github.com/foosel/OctoPrint.git /opt/octoprint \
   && virtualenv venv \
 	&& ./venv/bin/python setup.py install
 
